@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import { Checkbox } from "./components/checkbox/checkbox.component";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export const App: React.FC = () => {
+    const [checked] = React.useState<boolean>(false)
+
+    const onChangeHandlerControlled = (value: boolean) => {
+        console.log('Controlled: ', value)
+    }
+
+    const onChangeHandlerUncontrolled = (value: boolean) => {
+        console.log('Uncontrolled: ', value);
+    }
+
+    return (
+        <div className="App">
+            <h2>Uncontrolled</h2>
+            <Checkbox defaultValue={true} onChange={onChangeHandlerUncontrolled} />
+
+            <h2>Controlled</h2>
+            <Checkbox value={checked} onChange={onChangeHandlerControlled} />
+        </div>
+    );
 }
-
-export default App;
